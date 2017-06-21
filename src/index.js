@@ -16,15 +16,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use(authenticationRoutes);
 
-app.use(function authChecker(req, res, next) {
-  // implement some logic to determine if you should allow this request
-  // pull the token from the request and see if its valid
-  if (true) {
-      next();
-  } else {
-      res.send("Secured");
-  }
-});
+// app.use(function authChecker(req, res, next) {
+//   // implement some logic to determine if you should allow this request
+//   // pull the token from the request and see if its valid
+//   if (true) {
+//       next();
+//   } else {
+//       res.send("Secured");
+//   }
+// });
 
 app.get("/api/anyonecanseethis", function (req, res) {
   res.send("Hooray, I am not secured. Anyone can get this data");
@@ -39,6 +39,16 @@ app.get("/api/canigetthis", function (req, res) {
 app.get("/api/secret", function (req, res) {
   res.send(`The current user is ${req.user.username}`);
 });
+app.get("/api/classcomponent1", function (req, res) {
+  res.send("Class Component 1");
+});
+app.get("/api/classcomponent2", function (req, res) {
+  res.send("Class Component 2");
+});
+app.get("/api/classcomponent3", function (req, res) {
+  res.send("Class Component 3");
+});
+
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
